@@ -1,31 +1,38 @@
 package summary;
 
-import java.util.Collection;
+import ictclas.NlpirMethod;
+import summary.stopword.StopWordDictionary;
+import summary.unit.Term;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
 /**
  * 提取关键词的基类
  *
- * @author hankcs
+ * @author Ockone
  */
 public abstract class KeywordExtractor
 {
     /**
-     * 默认分词器
+     * 默认分词器NLPIR-ICTCLAS
+     * @param text 文本
+     * @return 分词结果s
      */
-    protected Segment defaultSegment;
-
-    public KeywordExtractor(Segment defaultSegment)
+    public static List<Term> segment(String text)
     {
-        this.defaultSegment = defaultSegment;
+        String result = NlpirMethod.NLPIR_ParagraphProcess(text, 1);
+        String[] temp = result.split("\\s+"); // 以一个或多个空格分割字符串
+        List<Term> termList = new ArrayList<Term>();
+        for(String s : temp){
+            String[] p = s.split("/(?!/)"); // 我吐了：正则表达式里1个反斜杠要用4个反斜杠表示！！（正向否定断言）
+            if(p.length != 2) continue;
+            Term term = new Term(p[0],p[1]);
+            termList.add(term);
+        }
+        return termList;
     }
-
-    public KeywordExtractor()
-    {
-        this(StandardTokenizer.SEGMENT);
-    }
-
     /**
      * 是否应当将这个term纳入计算，词性属于名词、动词、副词、形容词
      *
@@ -39,23 +46,6 @@ public abstract class KeywordExtractor
     }
 
     /**
-     * 设置关键词提取器使用的分词器
-     *
-     * @param segment 任何开启了词性标注的分词器
-     * @return 自己
-     */
-    public KeywordExtractor setSegment(Segment segment)
-    {
-        defaultSegment = segment;
-        return this;
-    }
-
-    public Segment getSegment()
-    {
-        return defaultSegment;
-    }
-
-    /**
      * 提取关键词
      *
      * @param document 关键词
@@ -64,7 +54,7 @@ public abstract class KeywordExtractor
      */
     public List<String> getKeywords(String document, int size)
     {
-        return getKeywords(defaultSegment.seg(document), size);
+        return getKeywords(segment(document), size);
     }
 
     /**
@@ -75,7 +65,7 @@ public abstract class KeywordExtractor
      */
     public List<String> getKeywords(String document)
     {
-        return getKeywords(defaultSegment.seg(document), 10);
+        return getKeywords(segment(document), 10);
     }
 
     protected void filter(List<Term> termList)

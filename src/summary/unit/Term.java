@@ -1,8 +1,8 @@
-package summary;
+package summary.unit;
 
 /**
  * 一个单词，用户可以直接访问此单词的全部属性
- * @author hankcs
+ * @author Ockone
  */
 public class Term
 {

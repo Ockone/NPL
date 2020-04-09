@@ -1,4 +1,4 @@
-package summary;
+package summary.unit;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 /**
  * 搜索相关性评分算法
- * @author hankcs
+ * @author Ockone
  */
 public class BM25
 {

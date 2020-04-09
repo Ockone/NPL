@@ -1,4 +1,6 @@
-package summary;
+package summary.stopword;
+
+import summary.unit.Term;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,7 +15,7 @@ public class StopWordDictionary {
      */
     public static Set<String> stopwordDict;
     // 加载停用词表
-    static {load("src/summary/stopword.dic");}
+    static {load("src/summary/stopword/stopword.dic");}
     public static void load(String dictPath){
         stopwordDict = new HashSet<String>();
         try{

@@ -1,11 +1,13 @@
 package summary;
 
+import summary.unit.Term;
+import summary.unit.MaxHeap;
 import java.util.*;
 
 /**
  * 基于TextRank算法的关键字提取，适用于单文档
  *
- * @author hankcs
+ * @author Ockone
  */
 public class TextRankKeyword extends KeywordExtractor
 {
@@ -18,11 +20,6 @@ public class TextRankKeyword extends KeywordExtractor
      */
     public static int max_iter = 200;
     final static float min_diff = 0.001f;
-
-    public TextRankKeyword(Segment defaultSegment)
-    {
-        super(defaultSegment);
-    }
 
     public TextRankKeyword()
     {
@@ -63,7 +60,7 @@ public class TextRankKeyword extends KeywordExtractor
     public Map<String, Float> getTermAndRank(String content)
     {
         assert content != null;
-        List<Term> termList = defaultSegment.seg(content);
+        List<Term> termList = segment(content);
         return getTermAndRank(termList);
     }
 

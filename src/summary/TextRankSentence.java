@@ -2,12 +2,14 @@ package summary;
 
 import java.util.*;
 import ictclas.NlpirMethod;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+import summary.stopword.StopWordDictionary;
+import summary.unit.BM25;
+import summary.unit.Term;
 
 /**
  * TextRank 自动摘要
  *
- * @author hankcs
+ * @author Ockone
  */
 public class TextRankSentence
 {
