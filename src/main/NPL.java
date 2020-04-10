@@ -64,8 +64,9 @@ public class NPL extends JFrame{
         part3.add(jspane2,BorderLayout.CENTER);
 
         jsp=new JSplitPane(JSplitPane.VERTICAL_SPLIT,part2,part3); //创建拆分窗格
+        jsp.setDividerLocation(170);
         jsp.setDividerSize(1);			//设置分频器大小
-        jsp.setEnabled(true);
+        //jsp.setEnabled(true);
         //下部组件
         jp2=new JPanel();
         jb1=new JButton("提取");		//创建按钮
@@ -133,7 +134,7 @@ public class NPL extends JFrame{
         //设置窗体实行
         this.setTitle("文本摘要与关键词提取");		//设置界面标题
         this.setIconImage(new ImageIcon("image/qq.gif").getImage()); //设置标题图片，就是上面的小企鹅
-        this.setSize(1320, 720);				//设置界面像素
+        this.setSize(1320, 760);				//设置界面像素
         this.setLocation(200, 200);			//设置界面初始位置
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//设置虚拟机和界面一同关闭
         this.setVisible(true);				//设置界面可视化
