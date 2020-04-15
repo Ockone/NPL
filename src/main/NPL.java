@@ -18,8 +18,8 @@ public class NPL extends JFrame{
     JScrollPane jspane1;	//定义滚动窗格
     JTextArea jta2;
     JScrollPane jspane2;
-    JTextArea jta3;
-    JScrollPane jspane3;
+    JTextArea jta0;
+    JScrollPane jspane0;
     //下部组件
     JPanel jp2;
     JButton jb1,jb2;	//定义按钮
@@ -32,15 +32,16 @@ public class NPL extends JFrame{
     {
         Font font = new Font(Font.SANS_SERIF,Font.PLAIN,20);
         //jp0 = new JPanel();
-        jta3=new JTextArea(13,80);
-        jta3.setFont(font);
-        jta3.setLineWrap(true);
-        jspane3=new JScrollPane(jta3);
+        jta0=new JTextArea(13,80);
+        jta0.setFont(font);
+        jta0.setLineWrap(true);
+        jspane0=new JScrollPane(jta0);
         JPanel part1 = new JPanel();
         JLabel lable1 = new JLabel("待检索文本");
         lable1.setFont(font);
         part1.add(lable1,BorderLayout.WEST);
-        part1.add(jspane3,BorderLayout.CENTER);
+        part1.add(jspane0,BorderLayout.CENTER);
+        //part1.setSize(300,700);
         //创建组件
         //上部组件
         jp1=new JPanel();	//创建面板
@@ -115,7 +116,7 @@ public class NPL extends JFrame{
         jb1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String text = jta3.getText();
+                String text = jta0.getText();
                 String summary = TextRankSentence.getSummary(text,Integer.parseInt(jtf1.getText()));
                 jta1.setText(summary);
                 String keywords = TextRankKeyword.getKeywordList(text,Integer.parseInt(jtf2.getText())).toString();
@@ -127,13 +128,13 @@ public class NPL extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 jta1.setText("");
                 jta2.setText("");
-                jta3.setText("");
+                jta0.setText("");
             }
         });
 
         //设置窗体实行
         this.setTitle("文本摘要与关键词提取");		//设置界面标题
-        this.setIconImage(new ImageIcon("image/qq.gif").getImage()); //设置标题图片，就是上面的小企鹅
+        this.setIconImage(new ImageIcon("src/source/rejected-order.png").getImage()); //设置标题图片，就是上面的小企鹅
         this.setSize(1320, 760);				//设置界面像素
         this.setLocation(200, 200);			//设置界面初始位置
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//设置虚拟机和界面一同关闭
