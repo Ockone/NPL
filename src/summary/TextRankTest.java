@@ -27,6 +27,6 @@ public class TextRankTest {
                 "J-31升空后，完全能应对美国的F-35。这些战机能从根本上改变中国同美国以及同台湾地区冲突的走向。如果中国大陆通过台湾海峡进攻台湾(解放军每年都要进行这方面的演练)，" +
                 "因为拥有最先进的战机而具有的空中优势是解放军进攻取胜的关键因素。这无疑应当引起美国的不安，无论是从战略上，还是从战术上以及从机动性上，美国《国家利益》警告。";
         List<String> keywords = TextRankKeyword.getKeywordList(content,20);
-        System.out.println("关键词：\n" + keywords.toString());
+        System.out.println("\n关键词：\n" + TextRankKeyword.count + keywords.toString());
     }
 }

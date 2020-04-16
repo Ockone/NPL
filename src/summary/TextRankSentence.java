@@ -65,6 +65,11 @@ public class TextRankSentence
         vertex = new double[D];
         top = new TreeMap<Double, Integer>(Collections.reverseOrder());
         solve();
+//        for(double[] w : weight){
+//            System.out.print("[");
+//            for(double i : w) System.out.println(i + ",");
+//            System.out.println("]");
+//        }
     }
 
     private void solve()
@@ -103,8 +108,10 @@ public class TextRankSentence
         // 我们来排个序吧
         for (int i = 0; i < D; ++i)
         {
+            System.out.print(vertex[i]+"/ ");
             top.put(vertex[i], i); // TreeMap<Double, Integer>(Collections.reverseOrder())该数据类型自动降序
         }
+
     }
 
     /**
@@ -281,7 +288,7 @@ public class TextRankSentence
     {
         List<String> sentenceList = splitSentence(document, sentence_separator);
 //        for(String s : sentenceList){
-//            System.out.println(s);
+//            System.out.print("[" + s + "]、");
 //        }
         int sentence_count = sentenceList.size();
         int document_length = document.length();

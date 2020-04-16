@@ -63,6 +63,9 @@ public class BM25
         df = new TreeMap<String, Integer>();
         idf = new TreeMap<String, Double>();
         init();
+//        for(Map.Entry<String, Double> i : idf.entrySet()){
+//            System.out.print(i.getKey() + ":" + i.getValue() + ";");
+//        }
     }
 
     /**

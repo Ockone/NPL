@@ -21,6 +21,8 @@ public class TextRankKeyword extends KeywordExtractor
     public static int max_iter = 200;
     final static float min_diff = 0.001f;
 
+    static int count = 0; // 记录迭代次数
+
     public TextRankKeyword()
     {
     }
@@ -92,6 +94,7 @@ public class TextRankKeyword extends KeywordExtractor
         }).addAll(map.entrySet()).toList())
         {
             result.put(entry.getKey(), entry.getValue());
+//            System.out.print(entry.getKey() + ":" + entry.getValue() + ";");
         }
         return result;
     }
@@ -115,6 +118,7 @@ public class TextRankKeyword extends KeywordExtractor
 //        System.out.println(wordList);
         Map<String, Set<String>> words = new TreeMap<String, Set<String>>();
         Queue<String> que = new LinkedList<String>();
+        //System.out.println(wordList.toString());
         for (String w : wordList)
         {
             if (!words.containsKey(w))
@@ -153,6 +157,7 @@ public class TextRankKeyword extends KeywordExtractor
             {
                 String key = entry.getKey();
                 Set<String> value = entry.getValue();
+//                System.out.println(key + "=" + value.toString());
                 m.put(key, 1 - d);
                 for (String element : value)
                 {
@@ -163,6 +168,7 @@ public class TextRankKeyword extends KeywordExtractor
                 max_diff = Math.max(max_diff, Math.abs(m.get(key) - (score.get(key) == null ? 0 : score.get(key))));
             }
             score = m;
+            count++; // 记录迭代次数
             if (max_diff <= min_diff) break;
         }
 
