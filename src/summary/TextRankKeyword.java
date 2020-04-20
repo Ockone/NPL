@@ -113,6 +113,7 @@ public class TextRankKeyword extends KeywordExtractor
             if (shouldInclude(t))
             {
                 wordList.add(t.word);
+//                System.out.print(t.word + '\\' + t.nature + ", ");
             }
         }
 //        System.out.println(wordList);
